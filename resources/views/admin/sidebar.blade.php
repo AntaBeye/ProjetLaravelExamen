@@ -23,7 +23,7 @@
                 <li><a href="#">Page</a></li>
               </ul>
             </li>
-            <li><a href="charts.html"> <i class="fa fa-user"></i>Chauffeurs</a></li>
+            <li><a href="/listeChauffeur"> <i class="fa fa-user"></i>Chauffeurs</a></li>
             <li><a href="forms.html"> <i class="fa fa-cc-visa"></i>Paiements</a></li>
             
 

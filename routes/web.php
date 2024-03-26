@@ -28,6 +28,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/listeVehicule',[HomeController::class,'listeVehicule'])->name('admin.listeVehicule');
 Route::get('/listeClient',[HomeController::class,'listeClient'])->name('admin.listeClient');
+Route::get('/listeChauffeur',[HomeController::class,'listeChauffeur'])->name('admin.listeChauffeur');
 
    
 Route::get('/vehiculees',[HomeController::class,'indexx'])->name('client.vehicules');
@@ -38,7 +39,11 @@ Route::get('/detailsvehicules',[HomeController::class,'indeexxx'])->name('client
 
 Route::get('/vehicules', [VehiculeController::class,'index'])->name('vehicules.index');
 
-Route::put('/vehicules/{vehicule}', [HomeController::class, 'louer'])->name('vehicules.louer');
-Route::put('/vehicules/{vehicule}/annuler', [HomeController::class, 'annuler'])->name('vehicules.annuler');
+Route::post('/vehicules/{id}/annuler-location', [VehiculeController::class, 'annulerLocation'])->name('vehicules.annuler');
+Route::post('/vehicules/{id}/louer', [VehiculeController::class, 'louer'])->name('vehicules.louer');
 
-Route::post('/locations', [LocationController::class, 'louer'])->name('locations.store');
+Route::get('/vehicules/create', [VehiculeController::class, 'create'])->name('vehicules.create');
+Route::delete('/vehicules/{id}', [VehiculeController::class, 'destroy'])->name('vehicules.destroy');
+
+// Route pour enregistrer les données du formulaire
+Route::post('/vehicules', [VehiculeController::class, 'store'])->name('vehicules.store');

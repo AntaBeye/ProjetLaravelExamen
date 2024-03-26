@@ -20,8 +20,9 @@ return new class extends Migration
     $table->date('date_emission');
     $table->date('expiration');
     $table->enum('categorie', ['A1', 'B']);
-     // Définir onDelete('set null') pour gérer les suppressions en cascade
+    $table->unsignedBigInteger('chauffeur')->nullable();
     $table->timestamps();
+    $table->foreign('chauffeur')->references('id')->on('chauffeurs');
         });
     }
 

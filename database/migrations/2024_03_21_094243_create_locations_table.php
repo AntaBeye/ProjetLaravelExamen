@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('client_id'); 
+            $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('users');
-            $table->unsignedBigInteger('vehicule_id'); 
+            $table->unsignedBigInteger('vehicule_id');
             $table->foreign('vehicule_id')->references('id')->on('vehicules');
             $table->date('date');
             $table->time('heure_debut');

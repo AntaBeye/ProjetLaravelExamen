@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Chauffeur extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'nom', 'prenom', 'experience', 'num_permis', 'date_emission','expiration','categorie'
+    ];
 }

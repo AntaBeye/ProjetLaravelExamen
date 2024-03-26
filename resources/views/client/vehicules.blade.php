@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Gallery</title>
+      <title>Nos offres</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -43,13 +43,10 @@
                         <a class="nav-link" href="/home">Accueil</a>
                     </li>
                     <li class="nav-item">
-                       <a class="nav-link" href="/vehicules">Véhicles</a>
+                       <a class="nav-link" href="/vehiculees">Véhicles</a>
                     </li>
                     <li class="nav-item">
-                     <a class="nav-link" href="/locations">Mes locations</a>
-                 </li>
-                    <li class="nav-item">
-                       <a class="nav-link" href="paiements">Paiements</a>
+                       <a class="nav-link" href="/paiements">Paiements</a>
                     </li>
                     <li class="nav-item">
                         <form id="logout-form" action="{{ route('logout') }}" method="POST"><a class="nav-link" class="logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Déconnexion</a>@csrf</form>
@@ -71,37 +68,61 @@
                   <h1 class="gallery_taital">Nos différentes Offres</h1>
                </div>
             </div>
-            <div class="gallery_section_2">
-               <div class="row">
-                   @foreach($vehicules as $vehicule)
-                   <div class="col-md-4">
-                     <div class="gallery_box">
-                        <div class="gallery_img"><img src="{{ asset('front/images/img-1.png') }}" alt="Photo du véhicule" width="100" height="100"></div>
-                        <h3 class="types_text">{{ $vehicule->matricule }}</h3>
-                        <p class="looking_text">123 000 000FCA</p>
-                        <h3 class="types_text">{{ $vehicule->statut }}</h3>
-                        <div class="read_bt">
-                            @if($vehicule->statut == 'disponible')
-                                <form action="{{ route('vehicules.louer', $vehicule->id) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit">Louer</button>
-                                </form>
-                            @elseif($vehicule->statut == 'location')
-                                <form action="{{ route('vehicules.annuler', $vehicule->id) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit">Annuler</button>
-                                </form>
-                            @endif
-                        </div>
+<br>
+<br>
+
+            <div class="row">
+               @foreach ($vehicules as $vehicule)
+               <div class="col-md-4">
+                   <div class="gallery_box">
+                       <div class="gallery_img">
+                     
+                           <img src="{{ asset($vehicule->photo) }}" alt="Vehicule Photo">
+                       </div>
+                       <h3 class="types_text">{{ $vehicule->matricule }}</h3>
+
+                       @if ($vehicule->statut == 'disponible')
+                       <form action="{{ route('vehicules.louer', $vehicule->id) }}" method="POST">
+                        @csrf
+                       <h3 class="types_text">{{ $vehicule->statut }}</h3>
+                       <div class="mb-3">
+                        <label for="date" class="form-label">Date:</label>
+                        <input type="date" id="date" name="date" class="form-control">
                     </div>
-                  
-                 
+                    
+                       <div class="mb-3">
+                        <label for="heure-select" class="form-label">Heure de début</label>
+                        <input type="time" name="heure_debut" class="form-control" id="heure-select">
+                    </div>
+                    <div class="mb-3">
+                     <label for="heure-select" class="form-label">Heure de fin</label>
+                     <input type="time" name="heure_fin" class="form-control" id="heure-select">
+                 </div>
+                       <!-- Assurez-vous que le champ dans la base de données contient le chemin de la photo -->
+                       <!-- Vous pouvez ajouter d'autres champs ici selon vos besoins -->
+                       <button type="submit" class="btn btn-outline-secondary">LOUER</button>
+                       </form>
+                       @else
+                       <!-- Bouton "Annuler" -->
+                       <form action="{{ route('vehicules.annuler', $vehicule->id) }}" method="POST">
+                        <h3 class="types_text">{{ $vehicule->statut }}</h3>
+
+                           @csrf
+                           <!-- Bouton "Annuler" -->
+                           <br>
+                           <br>
+                        <br>
+                           <br>
+                           <br>
+                           <button type="submit" class="btn btn-danger">Annuler la location</button>
+                       </form>
+                   @endif
+
                    </div>
-                   @endforeach
                </div>
+               @endforeach
            </div>
+           
          </div>
            
              
@@ -123,6 +144,12 @@
       </div>
       <!-- copyright section end -->
       <!-- Javascript files-->
+      <script>
+      .custom-btn {
+         background-color: #ff0000; /* Rouge */
+         color: #ffffff; /* Blanc pour le texte */
+     }
+     </script>
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>

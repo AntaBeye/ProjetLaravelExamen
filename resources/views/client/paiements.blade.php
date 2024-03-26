@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Gallery</title>
+      <title>Paiements</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -90,9 +90,6 @@
                        <a class="nav-link" href="/vehicules">Véhicles</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/locations">Mes locations</a>
-                    </li>
-                    <li class="nav-item">
                        <a class="nav-link" href="/paiements">Paiements</a>
                     </li>
                     <li class="nav-item">
@@ -113,55 +110,16 @@
      <br>
      <br>
     <title>Formulaire de Paiement en Ligne</title>
-    <style>
-        /* Styling pour la mise en forme du formulaire */
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .image-container {
-            flex: 1;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-        }
-        .form-container {
-            flex: 1;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        form {
-            max-width: 400px;
-            margin: 0 auto;
-        }
-        input[type="text"],
-        input[type="email"],
-        input[type="number"],
-        select,
-        button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 
     <div class="container">
         <div class="image-container">
-            <img src="chemin/vers/votre/image.jpg" alt="Image du produit">
+            <img src="{{ asset(session('image_url')) }}" alt="Image du véhicule">
         </div>
+        <div>
+            <p>Matricule du véhicule : {{ session('matricule') }}</p>
+        </div>
+        
         <br>
     <br>
         <div class="form-container">

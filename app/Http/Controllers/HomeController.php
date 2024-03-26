@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
 use App\Models\Vehicule;
+use App\Models\Chauffeur;
  
 class HomeController extends Controller
 {
@@ -32,21 +33,7 @@ class HomeController extends Controller
         $vehicules = Vehicule::all();
         return view ('client.vehicules',compact('vehicules'));
     }
-    public function louer(Vehicule $vehicule)
-    {
-        $vehicule->statut = 'location';
-        $vehicule->save();
-    
-        return redirect()->back()->with('success', 'Le véhicule a été loué avec succès.');
-    }
 
-    public function annuler(Vehicule $vehicule)
-{
-    $vehicule->statut = 'disponible';
-    $vehicule->save();
-
-    return redirect()->back()->with('success', 'La location a été annulée avec succès.');
-}
 
     public function indeexx()
     {
@@ -62,6 +49,7 @@ class HomeController extends Controller
     {
         return view ('client.detailsvehicules');
     }
+
  
     /**
      * Show the application dashboard.
@@ -76,7 +64,8 @@ class HomeController extends Controller
     public function listeVehicule()
     {
         $vehicules = Vehicule::all();
-        return view('admin.listeVehicule',compact('vehicules'));
+        $chauffeurs = Chauffeur::all();
+        return view('admin.listeVehicule',compact('vehicules','chauffeurs'));
     }
     
     public function listeClient()
@@ -84,4 +73,9 @@ class HomeController extends Controller
         return view('admin.listeClient');
     }
     
+    public function listeChauffeur()
+    {
+        $chauffeurs = Chauffeur::all();
+        return view('admin.listeChauffeur',compact('chauffeurs'));
+    }
 }
